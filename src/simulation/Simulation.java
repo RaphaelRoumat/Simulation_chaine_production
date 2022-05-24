@@ -3,9 +3,10 @@ package simulation;
 public class Simulation {
 
 	/**
-	 * Cette classe représente l'application dans son ensemble.
+	 * Cette classe reprï¿½sente l'application dans son ensemble.
 	 */
 	public static void main(String[] args) {
+		System.out.println("Test");
 		Environnement environnement = new Environnement();
 		FenetrePrincipale fenetre = new FenetrePrincipale();
 
