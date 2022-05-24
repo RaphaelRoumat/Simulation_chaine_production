@@ -1,0 +1,167 @@
+@startuml diagramme_class
+skinparam roundcorner 20
+skinparam class {
+BackgroundColor palegoldenroad
+ArrowColor MidnightBlue
+BorderColor Darkslateblue
+}
+skinparam stereotypeCBackgroundColor dodgerblue
+
+
+package simulation
+{
+
+    package observer
+    {
+        class Observable
+        {
+            + attach()
+            + dettach()
+            + notifyObservers()
+        }
+        Interface Observer
+        {
+            + Update()
+        }
+
+        Observable o-u-  Observer
+
+
+    }
+    package usine
+    {
+        interface Usine
+        {
+            +peuRecevoir()
+            +recevoirMateriau()
+        }
+        class UsineProduction
+        {
+            -id
+            -nom
+            -coords
+            -interval_production
+            -depuis_production
+            -icones[]
+            -entrees[]
+            -sortie
+            -Produire()
+        }
+        class Entrepot
+        {
+            -id
+            -nom
+            -coords
+            -icones[]
+            -stock
+            -strategieVente
+            +setStrategie()
+            +vendre()
+        }
+
+        Usine <|.. UsineProduction
+        Usine <|.. Entrepot
+        UsineProduction ..|> Observer
+        Observable <|-- Entrepot
+
+    }
+
+    Package materiau
+    {
+        class StockMateriau
+        {
+            -typeMateriau
+            -stock[]
+            -capacite
+            +peuRecevoir()
+            +recevoirMateriau()
+            +destockerMateriau()
+            +estVide()
+        }
+
+        class Materiau
+        {
+            -idOrigine
+            -nom
+        }
+
+        class MateriauComposite
+        {
+            -composants[]
+        }
+
+        Materiau <|-- MateriauComposite
+        StockMateriau --o Materiau
+
+    }
+
+
+
+    Package strategieVente
+    {
+        interface StrategieVente
+        {
+            +peuVendre()
+        }
+        class StrategieVenteAleatoire
+        {
+            -probaVente
+            +setProbaVente
+        }
+        class StrategieVenteFixe
+        {
+            -intervalVente
+            -derniereVente
+            +setIntervalVente
+        }
+
+        StrategieVente <|.. StrategieVenteAleatoire
+        StrategieVente <|.. StrategieVenteFixe
+    }
+
+    package reseau{
+
+        class Reseau
+        {
+            -chemins[]
+            -transitions[]
+        }
+        class Chemin
+        {
+            -depart
+            -arrivee
+            -vecteur_unitaire[]
+            +getUnitV()
+
+        }
+        class Transition
+        {
+            -chemin
+            -materiau
+        }
+
+        Reseau o-d- "*" Chemin
+        Reseau o-l- "*" Transition
+
+
+    }
+
+
+
+
+    package parserXml
+    {
+        class ParserXml
+        {
+            +parserFichierXml()
+        }
+    }
+    ParserXml --> "construit" Reseau
+
+    Usine  o-u- "*" StockMateriau
+    UsineProduction o-u- "1" Materiau
+    Entrepot o-u- "1" StrategieVente
+    Chemin -l-o Usine
+    reseau -[hidden]d-> usine
+}
+@enduml
