@@ -1,9 +1,9 @@
 @startuml diagramme_class
 skinparam roundcorner 20
 skinparam class {
-BackgroundColor palegoldenroad
-ArrowColor MidnightBlue
-BorderColor Darkslateblue
+    BackgroundColor palegoldenroad
+    ArrowColor MidnightBlue
+    BorderColor Darkslateblue
 }
 skinparam stereotypeCBackgroundColor dodgerblue
 

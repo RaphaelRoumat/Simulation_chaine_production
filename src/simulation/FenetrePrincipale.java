@@ -7,26 +7,29 @@ import java.beans.PropertyChangeListener;
 
 import javax.swing.JFrame;
 
+import simulation.reseau.Reseau;
+
 public class FenetrePrincipale extends JFrame implements PropertyChangeListener {
 
 	private static final long serialVersionUID = 1L;
 	private static final String TITRE_FENETRE = "Laboratoire 1 : LOG121 - Simulation";
 	private static final Dimension DIMENSION = new Dimension(700, 700);
+	PanneauPrincipal panneauPrincipal;
 
 	public FenetrePrincipale() {
-		PanneauPrincipal panneauPrincipal = new PanneauPrincipal();
-		MenuFenetre menuFenetre = new MenuFenetre();
+		panneauPrincipal = new PanneauPrincipal();
+		MenuFenetre menuFenetre = new MenuFenetre(this);
 		add(panneauPrincipal);
 		add(menuFenetre, BorderLayout.NORTH);
-		// Faire en sorte que le X de la fenêtre ferme la fenêtre
+		// Faire en sorte que le X de la fenï¿½tre ferme la fenï¿½tre
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setTitle(TITRE_FENETRE);
 		setSize(DIMENSION);
-		// Rendre la fenêtre visible
+		// Rendre la fenï¿½tre visible
 		setVisible(true);
-		// Mettre la fenêtre au centre de l'écran
+		// Mettre la fenï¿½tre au centre de l'ï¿½cran
 		setLocationRelativeTo(null);
-		// Empêcher la redimension de la fenêtre
+		// Empï¿½cher la redimension de la fenï¿½tre
 		setResizable(false);
 	}
 
@@ -34,7 +37,10 @@ public class FenetrePrincipale extends JFrame implements PropertyChangeListener 
 	public void propertyChange(PropertyChangeEvent evt) {
 		if (evt.getPropertyName().equals("TEST")) {
 			repaint();
-			System.out.println(evt.getNewValue());
 		}
+	}
+
+	public void updateReseau(Reseau reseau) {
+		panneauPrincipal.updateReseau(reseau);
 	}
 }

@@ -3,23 +3,32 @@ package simulation;
 import java.awt.Graphics;
 import java.awt.Point;
 
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+
+import simulation.reseau.Reseau;
 
 public class PanneauPrincipal extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	
-	// Variables temporaires de la demonstration:
-	private Point position = new Point(0,0);
-	private Point vitesse = new Point(1,1);
-	private int taille = 32;
-	
+	private Reseau reseau = null;
+
+	public void updateReseau(Reseau reseau) {
+		this.reseau = reseau;
+	}
+
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
-		// On ajoute à la position le delta x et y de la vitesse
-		position.translate(vitesse.x, vitesse.y);
-		g.fillRect(position.x, position.y, taille, taille);
+
+		if (reseau == null) {
+			g.drawString("Aucun fichier XML selectionnÃ©", 20, 20);
+		} else {
+			reseau.drawReseau(g);
+		}
+		// On ajoute ï¿½ la position le delta x et y de la vitesse
+		// position.translate(vitesse.x, vitesse.y);
+		// g.fillRect(position.x, position.y, taille, taille);
 	}
 
 }

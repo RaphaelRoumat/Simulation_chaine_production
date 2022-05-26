@@ -2,16 +2,18 @@ package simulation;
 
 import javax.swing.SwingWorker;
 
+import simulation.reseau.Reseau;
+
 public class Environnement extends SwingWorker<Object, String> {
 	private boolean actif = true;
 	private static final int DELAI = 100;
-	
+
 	@Override
 	protected Object doInBackground() throws Exception {
-		while(actif) {
+		while (actif) {
 			Thread.sleep(DELAI);
 			/**
-			 * C'est ici que vous aurez à faire la gestion de la notion de tour.
+			 * C'est ici que vous aurez ï¿½ faire la gestion de la notion de tour.
 			 */
 			firePropertyChange("TEST", null, "Ceci est un test");
 		}

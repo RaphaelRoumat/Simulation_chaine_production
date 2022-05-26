@@ -18,36 +18,37 @@ public class PanneauStrategie extends JPanel {
 	public PanneauStrategie() {
 
 		ButtonGroup groupeBoutons = new ButtonGroup();
-		JRadioButton strategie1 = new JRadioButton("Stratégie 1");
-		JRadioButton strategie2 = new JRadioButton("Stratégie 2");	
-		
+		JRadioButton strategie1 = new JRadioButton("Stratï¿½gie 1");
+		JRadioButton strategie2 = new JRadioButton("Stratï¿½gie 2");
+
 		JButton boutonConfirmer = new JButton("Confirmer");
 
 		boutonConfirmer.addActionListener((ActionEvent e) -> {
-			// TODO - Appeler la bonne stratégie
+			// TODO - Appeler la bonne stratï¿½gie
 			System.out.println(getSelectedButtonText(groupeBoutons));
-			// Fermer la fenêtre du composant
+			// Fermer la fenï¿½tre du composant
 			SwingUtilities.getWindowAncestor((Component) e.getSource()).dispose();
 		});
 
 		JButton boutonAnnuler = new JButton("Annuler");
 
 		boutonAnnuler.addActionListener((ActionEvent e) -> {
-			// Fermer la fenêtre du composant
+			// Fermer la fenï¿½tre du composant
 			SwingUtilities.getWindowAncestor((Component) e.getSource()).dispose();
 		});
 
 		groupeBoutons.add(strategie1);
-		groupeBoutons.add(strategie2);		
+		groupeBoutons.add(strategie2);
 		add(strategie1);
-		add(strategie2);		
+		add(strategie2);
 		add(boutonConfirmer);
 		add(boutonAnnuler);
 
 	}
 
 	/**
-	 * Retourne le bouton sélectionné dans un groupe de boutons.
+	 * Retourne le bouton sï¿½lectionnï¿½ dans un groupe de boutons.
+	 * 
 	 * @param groupeBoutons
 	 * @return
 	 */
