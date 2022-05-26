@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class MetaUsine {
     private String type;
     private ArrayList<String> icones_path;
-    private boolean entrepot = false;
+    private boolean is_entrepot = false;
 
     @Override
     public String toString() {
@@ -21,7 +21,7 @@ public class MetaUsine {
     }
 
     public boolean isEntrepot() {
-        return entrepot;
+        return is_entrepot;
     }
 
     public String getType() {
@@ -41,7 +41,7 @@ public class MetaUsine {
     }
 
     public void setAsEntrepot() {
-        entrepot = true;
+        is_entrepot = true;
     }
 
 }

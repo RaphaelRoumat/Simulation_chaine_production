@@ -2,7 +2,6 @@ package simulation;
 
 import javax.swing.SwingWorker;
 
-import simulation.reseau.Reseau;
 
 public class Environnement extends SwingWorker<Object, String> {
 	private boolean actif = true;

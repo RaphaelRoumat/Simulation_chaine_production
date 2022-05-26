@@ -34,6 +34,8 @@ package simulation
         {
             +peuRecevoir()
             +recevoirMateriau()
+            +getIcone()
+            +getCoords()
         }
         class UsineProduction
         {
@@ -125,13 +127,20 @@ package simulation
         {
             -chemins[]
             -transitions[]
+            -usines[]
+            +ajouterChemin()
+            +ajouterUsine()
+            +ajouterTransition()
+            +drawReseau();
         }
         class Chemin
         {
             -depart
             -arrivee
             -vecteur_unitaire[]
-            +getUnitV()
+            +getVecteurUnitaire()
+            +getCoordDepart()
+            +getCoordArrivee()
 
         }
         class Transition
@@ -140,8 +149,8 @@ package simulation
             -materiau
         }
 
-        Reseau o-d- "*" Chemin
-        Reseau o-l- "*" Transition
+        Reseau o-d "*" Chemin
+        Reseau o-l "*" Transition
 
 
     }
@@ -153,8 +162,24 @@ package simulation
     {
         class ParserXml
         {
-            +parserFichierXml()
+            +parser()
+            -parserMeta()
+            -parserSimulation()
         }
+
+        class MetaUsine
+        {
+            -type
+            -icones_path
+            -is_entrepot
+            +addIcone()
+            +setAsEntrepot()
+
+        }
+
+        MetaUsine <- ParserXml
+
+
     }
     ParserXml --> "construit" Reseau
 

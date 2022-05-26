@@ -1,6 +1,8 @@
 package simulation.reseau;
 
 import simulation.usine.Usine;
+import java.awt.Graphics;
+
 
 public class Chemin {
     private Usine depart;
@@ -27,6 +29,13 @@ public class Chemin {
     {
         return arrivee.getCoords();
 
+    }
+
+    public void drawChemin(Graphics g)
+    {
+        int[] coord_depart = this.getCoordDepart();
+        int[] coord_arrivee = this.getCoordArrivee();
+        g.drawLine(coord_depart[0], coord_depart[1], coord_arrivee[0], coord_arrivee[1]);
     }
 
 

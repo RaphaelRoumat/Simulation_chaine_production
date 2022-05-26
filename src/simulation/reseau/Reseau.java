@@ -1,10 +1,9 @@
 package simulation.reseau;
 
 import java.util.ArrayList;
-
+ 
 import simulation.usine.Usine;
 import java.awt.Graphics;
-import java.awt.Image;
 
 public class Reseau {
     private ArrayList<Usine> usines;
@@ -37,19 +36,12 @@ public class Reseau {
     {
         // Affichage des chemins
         for (Chemin chemin : chemins) {
-            int[] coord_depart = chemin.getCoordDepart();
-            int[] coord_arrivee = chemin.getCoordArrivee();
-            g.drawLine(coord_depart[0], coord_depart[1], coord_arrivee[0], coord_arrivee[1]);
+            chemin.drawChemin(g);
         }
 
         // Affichage des usines
         for (Usine usine : usines) {
-            int[] coord_usine = usine.getCoords();
-            Image image = usine.getIcone();
-            int width = image.getWidth(null);
-            int height = image.getHeight(null);
-
-            g.drawImage(usine.getIcone(), coord_usine[0] - width/2, coord_usine[1] - height/2, null);
+            usine.drawUsine(g);
         }
     }
 }

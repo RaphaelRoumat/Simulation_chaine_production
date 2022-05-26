@@ -1,9 +1,6 @@
 package simulation;
 
 import java.awt.Graphics;
-import java.awt.Point;
-
-import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 import simulation.reseau.Reseau;

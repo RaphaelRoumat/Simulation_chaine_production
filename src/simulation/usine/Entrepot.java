@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.imageio.ImageIO;
+
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -60,5 +62,18 @@ public class Entrepot implements Usine {
         // TODO calculer les icones en fonction de l'avancement
         return icones.get(0);
     }
+
+    @Override
+    public void drawUsine(Graphics g) {
+        int[] coord_usine = this.getCoords();
+        Image image = this.getIcone();
+        int width = image.getWidth(null);
+        int height = image.getHeight(null);
+
+        g.drawImage(this.getIcone(), coord_usine[0] - width/2, coord_usine[1] - height/2, null);
+        
+    }
+
+    
 
 }

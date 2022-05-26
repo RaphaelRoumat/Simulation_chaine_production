@@ -8,6 +8,8 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.awt.Graphics;
+
 
 // TODO Passer la classe en observer
 public class UsineProduction implements Usine {
@@ -60,6 +62,16 @@ public class UsineProduction implements Usine {
     public Image getIcone() {
         // TODO calculer les icones en fonction de l'avancement
         return icones.get(0);
+    }
+
+    public void drawUsine(Graphics g) {
+        int[] coord_usine = this.getCoords();
+        Image image = this.getIcone();
+        int width = image.getWidth(null);
+        int height = image.getHeight(null);
+
+        g.drawImage(this.getIcone(), coord_usine[0] - width/2, coord_usine[1] - height/2, null);
+        
     }
 
 }
