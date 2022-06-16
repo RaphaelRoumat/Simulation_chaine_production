@@ -54,6 +54,12 @@ public class StockMateriau {
         remplissage = 0;
     }
 
+    public void clearLast()
+    {
+        stock[remplissage] = null;
+        remplissage --;
+    }
+
     @Override
     public String toString() {
         return "StockMat: type=" + typeMateriau + ", remplissage=" + remplissage + ", reservations=" + reservation

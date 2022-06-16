@@ -11,6 +11,10 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.SwingUtilities;
 
+import simulation.strategieVente.StrategieAleatoire;
+import simulation.strategieVente.StrategieFixe;
+import simulation.usine.Entrepot;
+
 public class PanneauStrategie extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -18,14 +22,28 @@ public class PanneauStrategie extends JPanel {
 	public PanneauStrategie() {
 
 		ButtonGroup groupeBoutons = new ButtonGroup();
-		JRadioButton strategie1 = new JRadioButton("Strat�gie 1");
-		JRadioButton strategie2 = new JRadioButton("Strat�gie 2");
+		JRadioButton strategie1 = new JRadioButton("Stratégie Fixe");
+		JRadioButton strategie2 = new JRadioButton("Stratégie Aléatoire");
 
 		JButton boutonConfirmer = new JButton("Confirmer");
 
-		boutonConfirmer.addActionListener((ActionEvent e) -> {
-			// TODO - Appeler la bonne strat�gie
+		boutonConfirmer.addActionListener((ActionEvent e) -> {			
 			System.out.println(getSelectedButtonText(groupeBoutons));
+
+			for (Enumeration<AbstractButton> boutons = groupeBoutons.getElements(); boutons.hasMoreElements();) {
+				AbstractButton bouton = boutons.nextElement();
+				if (bouton.isSelected()) {
+					if(bouton.equals(strategie1))
+					{
+						Entrepot.setStrat(new StrategieFixe());
+					}
+					else if(bouton.equals(strategie2))
+					{
+						Entrepot.setStrat(new StrategieAleatoire());
+					}
+				}
+			}
+			
 			// Fermer la fen�tre du composant
 			SwingUtilities.getWindowAncestor((Component) e.getSource()).dispose();
 		});

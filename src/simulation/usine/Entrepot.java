@@ -12,6 +12,8 @@ import javax.imageio.ImageIO;
 import simulation.materiau.Materiau;
 import simulation.materiau.StockMateriau;
 import simulation.reseau.Reseau;
+import simulation.strategieVente.StrategieFixe;
+import simulation.strategieVente.StrategieVente;
 
 public class Entrepot extends Observable implements Usine {
     private int id;
@@ -19,10 +21,9 @@ public class Entrepot extends Observable implements Usine {
     private int[] coords;
     private List<Image> icones;
     private int current_icone;
-
-    // TODO implémenter le package stratégie
+    private static StrategieVente strat = new StrategieFixe();
     private StockMateriau stock;
-    // private StrategieVente strategieVente;
+    private double depuis_vente = 0.d;
 
     public Entrepot(int id, String nom, int[] coords, List<String> icones_path, StockMateriau stock) {
         this.id = id;
@@ -42,6 +43,10 @@ public class Entrepot extends Observable implements Usine {
                 System.out.println("FAIL LOAD: " + path);
             this.icones.add(image);
         }
+    }
+
+    public static void setStrat(StrategieVente strat) {
+        Entrepot.strat = strat;
     }
 
     public int[] getCoords() {
@@ -94,7 +99,19 @@ public class Entrepot extends Observable implements Usine {
     }
 
     public void stepUsine() {
-        // TODO Faire l'appel à la vente
+        if(stock.getRemplissage() > 0)
+        {
+            depuis_vente += 1.d;
+
+            if(strat.doitVendre(depuis_vente))
+            {
+                System.out.println("Vente d'avion");
+                stock.clearLast();
+                notifyObservers(new Object());
+                depuis_vente = 0.d;
+            }
+        }
+        
         // mise à jour des icones
 
         int interval = stock.getCapacite() / icones.size();
