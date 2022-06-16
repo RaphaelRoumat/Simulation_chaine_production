@@ -15,6 +15,7 @@ public class FenetrePrincipale extends JFrame implements PropertyChangeListener 
 	private static final String TITRE_FENETRE = "Laboratoire 1 : LOG121 - Simulation";
 	private static final Dimension DIMENSION = new Dimension(700, 700);
 	PanneauPrincipal panneauPrincipal;
+	Reseau reseau = null;
 
 	public FenetrePrincipale() {
 		panneauPrincipal = new PanneauPrincipal();
@@ -35,12 +36,16 @@ public class FenetrePrincipale extends JFrame implements PropertyChangeListener 
 
 	@Override
 	public void propertyChange(PropertyChangeEvent evt) {
-		if (evt.getPropertyName().equals("TEST")) {
+		if (evt.getPropertyName().equals("STEP")) {
+			if (reseau != null) {
+				reseau.stepReseau();
+			}
 			repaint();
 		}
 	}
 
 	public void updateReseau(Reseau reseau) {
+		this.reseau = reseau;
 		panneauPrincipal.updateReseau(reseau);
 	}
 }

@@ -2,6 +2,7 @@ package simulation;
 
 import java.awt.Graphics;
 import javax.swing.JPanel;
+import java.awt.Color;
 
 import simulation.reseau.Reseau;
 
@@ -14,18 +15,18 @@ public class PanneauPrincipal extends JPanel {
 		this.reseau = reseau;
 	}
 
-	@Override
-	public void paint(Graphics g) {
-		super.paint(g);
+	public void paintComponent(Graphics g) {
 
+		super.paintComponent(g);
+		setBackground(Color.white);
+		g.setColor(Color.white);
 		if (reseau == null) {
 			g.drawString("Aucun fichier XML selectionné", 20, 20);
 		} else {
+
 			reseau.drawReseau(g);
 		}
-		// On ajoute � la position le delta x et y de la vitesse
-		// position.translate(vitesse.x, vitesse.y);
-		// g.fillRect(position.x, position.y, taille, taille);
+
 	}
 
 }

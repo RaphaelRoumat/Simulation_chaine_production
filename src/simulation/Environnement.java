@@ -2,10 +2,9 @@ package simulation;
 
 import javax.swing.SwingWorker;
 
-
 public class Environnement extends SwingWorker<Object, String> {
 	private boolean actif = true;
-	private static final int DELAI = 100;
+	private static final int DELAI = 10;
 
 	@Override
 	protected Object doInBackground() throws Exception {
@@ -14,7 +13,7 @@ public class Environnement extends SwingWorker<Object, String> {
 			/**
 			 * C'est ici que vous aurez � faire la gestion de la notion de tour.
 			 */
-			firePropertyChange("TEST", null, "Ceci est un test");
+			firePropertyChange("STEP", null, null);
 		}
 		return null;
 	}
